@@ -5,116 +5,1006 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dipon Das — Civil Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-  --ink: #12130f;
-  --ink-soft: #3a3c35;
-  --ink-muted: #8a8c85;
-  --bg: #f7f5f0;
-  --bg-card: #ffffff;
-  --accent: #b85c2a;
-  --accent-light: #f2e8e0;
-  --green: #2a6b4f;
-  --green-light: #e0f0ea;
-  --gold: #c4963a;
-  --border: rgba(18,19,15,0.1);
-  --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'Outfit', system-ui, sans-serif;
-  --mono: 'Space Mono', monospace;
+:root{
+  --ink:#0e0f0c;
+  --ink2:#2c2e28;
+  --ink3:#5a5c55;
+  --ink4:#9a9c94;
+  --bg:#f6f4ef;
+  --bg2:#edeae2;
+  --card:#ffffff;
+  --accent:#c05e2e;
+  --accent2:#e8d5c4;
+  --green:#2a6b4f;
+  --green2:#dff0e8;
+  --gold:#b8882e;
+  --gold2:#f5edd8;
+  --blue:#2255a4;
+  --blue2:#dce8f8;
+  --border:rgba(14,15,12,0.09);
+  --sidebar-w:260px;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius:10px;
+  --shadow:0 2px 20px rgba(0,0,0,0.07);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.12);
 }
 
-html { scroll-behavior: smooth; }
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);display:flex;min-height:100vh;overflow-x:hidden}
 
-body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.6;
-  overflow-x: hidden;
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:var(--sidebar-w);min-height:100vh;
+  background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;z-index:200;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-profile{
+  padding:2.5rem 1.6rem 1.8rem;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  text-align:center;
+}
+.profile-photo-ring{
+  width:96px;height:96px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--gold));
+  padding:3px;margin:0 auto 1rem;display:block;
+  box-shadow:0 0 0 4px rgba(255,255,255,0.06);
+}
+.profile-photo-ring img{
+  width:100%;height:100%;border-radius:50%;object-fit:cover;
+  display:block;background:var(--bg2);
+}
+.profile-photo-initials{
+  width:90px;height:90px;border-radius:50%;
+  background:linear-gradient(135deg,#2c2e28,#3e4038);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:2rem;font-weight:600;
+  color:rgba(255,255,255,0.85);letter-spacing:0.02em;
+}
+.profile-name{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:#fff;letter-spacing:-0.01em;margin-bottom:0.2rem}
+.profile-role{font-size:0.72rem;color:rgba(255,255,255,0.45);font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
+
+.sidebar-nav{flex:1;padding:1.2rem 0.8rem;overflow-y:auto}
+.nav-section-label{
+  font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.28);padding:0.9rem 0.8rem 0.4rem;
+}
+.nav-item{
+  display:flex;align-items:center;gap:0.7rem;
+  padding:0.65rem 0.9rem;border-radius:8px;
+  cursor:pointer;transition:all .18s;
+  font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.6);
+  text-decoration:none;border:none;background:none;width:100%;text-align:left;
+  font-family:var(--sans);
+}
+.nav-item svg{width:16px;height:16px;flex-shrink:0;opacity:0.7}
+.nav-item:hover{background:rgba(255,255,255,0.07);color:#fff}
+.nav-item:hover svg{opacity:1}
+.nav-item.active{background:rgba(192,94,46,0.18);color:var(--accent);font-weight:600}
+.nav-item.active svg{opacity:1;color:var(--accent)}
+
+.sidebar-social{
+  padding:1.2rem 1.6rem;border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;
+}
+.s-link{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,0.06);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.5);transition:all .18s;text-decoration:none;
+}
+.s-link:hover{background:rgba(255,255,255,0.14);color:#fff;transform:translateY(-2px)}
+.s-link svg{width:16px;height:16px}
+
+/* ─── MOBILE TOGGLE ─── */
+.mobile-toggle{
+  display:none;position:fixed;top:1rem;left:1rem;z-index:300;
+  width:42px;height:42px;border-radius:10px;background:var(--ink);
+  border:none;cursor:pointer;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-lg);
+}
+.mobile-toggle span{display:block;width:18px;height:2px;background:#fff;margin:3px auto;transition:.3s;border-radius:2px}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:190;backdrop-filter:blur(2px)}
+
+/* ─── MAIN ─── */
+.main{
+  margin-left:var(--sidebar-w);
+  flex:1;min-height:100vh;
+  padding:3rem 3.5rem;
+  transition:margin .35s cubic-bezier(.4,0,.2,1);
 }
 
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 1.1rem 3rem;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(247,245,240,0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
-.nav-links a:hover { color: var(--accent); }
-.nav-links li:last-child a { background: var(--ink); color: #fff; padding: 0.4rem 1rem; border-radius: 4px; }
+/* ─── PAGES ─── */
+.page{display:none;animation:fadeUp .4s ease both}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: grid; grid-template-columns: 55% 45%;
-  padding-top: 70px;
+/* ─── PROFILE PAGE ─── */
+.profile-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+  min-height:calc(100vh - 6rem);align-items:center;
 }
-.hero-left {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 5rem 4rem 5rem 5rem;
+.profile-left{}
+.profile-eyebrow{
+  display:inline-flex;align-items:center;gap:0.55rem;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--green);background:var(--green2);padding:0.35rem 0.9rem;border-radius:100px;
+  margin-bottom:1.5rem;
 }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--green);
-  background: var(--green-light);
-  padding: 0.35rem 0.9rem; border-radius: 100px;
-  margin-bottom: 1.75rem; width: fit-content;
+.pulse{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+.profile-big-name{
+  font-family:var(--serif);font-size:clamp(3rem,5vw,5.5rem);
+  line-height:1;letter-spacing:-0.03em;margin-bottom:0.6rem;
 }
-.dot-live { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+.profile-big-name em{font-style:italic;color:var(--accent)}
+.profile-big-role{font-family:var(--mono);font-size:0.82rem;color:var(--ink3);letter-spacing:0.05em;margin-bottom:1.4rem}
+.profile-about{font-size:0.98rem;color:var(--ink2);line-height:1.85;margin-bottom:2rem;max-width:480px}
+.profile-contact-list{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:2.5rem}
+.contact-row{display:flex;align-items:center;gap:0.7rem;font-size:0.85rem;color:var(--ink2)}
+.contact-row svg{width:16px;height:16px;color:var(--accent);flex-shrink:0}
+.contact-row a{color:var(--ink2);text-decoration:none}
+.contact-row a:hover{color:var(--accent)}
+.profile-social-row{display:flex;gap:0.7rem;flex-wrap:wrap}
+.ps-btn{
+  display:inline-flex;align-items:center;gap:0.45rem;
+  padding:0.5rem 1rem;border-radius:8px;font-size:0.8rem;font-weight:500;
+  text-decoration:none;transition:all .18s;border:1.5px solid transparent;
+}
+.ps-btn-fb{background:#1877f2;color:#fff}.ps-btn-fb:hover{background:#1565d8;transform:translateY(-2px)}
+.ps-btn-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}.ps-btn-ig:hover{opacity:0.9;transform:translateY(-2px)}
+.ps-btn-li{background:#0a66c2;color:#fff}.ps-btn-li:hover{background:#084e93;transform:translateY(-2px)}
+.ps-btn-em{background:var(--ink);color:#fff}.ps-btn-em:hover{background:#000;transform:translateY(-2px)}
 
-.hero-name {
-  font-family: var(--serif);
-  font-size: clamp(3.2rem, 5.5vw, 5.2rem);
-  line-height: 1.05; letter-spacing: -0.03em;
-  margin-bottom: 1rem;
+.profile-right{
+  background:var(--ink);border-radius:20px;
+  padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;
+  position:relative;overflow:hidden;
 }
-.hero-name em { font-style: italic; color: var(--accent); }
-.hero-role {
-  font-family: var(--mono); font-size: 0.85rem;
-  color: var(--ink-muted); letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
+.pr-grid-bg{position:absolute;inset:0;opacity:.04;background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);background-size:28px 28px}
+.pr-photo-wrap{position:relative;z-index:1;margin-bottom:2rem}
+.pr-photo-ring{
+  width:200px;height:200px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--gold));
+  padding:4px;margin:0 auto;
 }
-.hero-desc { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; max-width: 420px; margin-bottom: 2.5rem; }
+.pr-photo-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:var(--ink2)}
+.pr-photo-initials{
+  width:192px;height:192px;border-radius:50%;background:linear-gradient(135deg,#2c2e28,#3e4038);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:4.5rem;font-weight:600;
+  color:rgba(255,255,255,.6);
+}
+.pr-name{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:#fff;text-align:center;margin-bottom:0.4rem;position:relative;z-index:1}
+.pr-tag{font-size:0.75rem;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:0.07em;text-transform:uppercase;text-align:center;margin-bottom:2rem;position:relative;z-index:1}
+.pr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:12px;overflow:hidden;width:100%;position:relative;z-index:1}
+.pr-stat{background:rgba(255,255,255,.03);padding:1.1rem 0.5rem;text-align:center}
+.pr-stat-num{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:#fff;line-height:1}
+.pr-stat-label{font-size:0.68rem;color:rgba(255,255,255,.4);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.25rem}
 
-.hero-badges { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-.badge {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: 0.78rem; font-weight: 500;
-  padding: 0.4rem 0.9rem; border-radius: 4px;
-  border: 1px solid var(--border);
-  background: var(--bg-card); color: var(--ink-soft);
-}
-.badge-gold { border-color: var(--gold); color: var(--gold); background: #fdf6e8; }
+/* ─── SECTION HEADERS ─── */
+.page-header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.page-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem}
+.page-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1}
+.page-subtitle{font-size:0.95rem;color:var(--ink3);margin-top:0.5rem;max-width:600px}
 
-.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border-radius: 4px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: var(--sans); }
-.btn-primary { background: var(--ink); color: #fff; }
-.btn-primary:hover { background: #000; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
-.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
-.btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+/* ─── CARDS ─── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:all .2s}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.card-grid-2{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1.25rem}
 
-.hero-right {
-  background: var(--ink);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 4rem 3rem;
-  position: relative; overflow: hidden;
+/* ─── TIMELINE ─── */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--border)}
+.tl-item{position:relative;padding-bottom:2.5rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{
+  position:absolute;left:-2rem;top:4px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--accent);border:2.5px solid var(--bg);
+  box-shadow:0 0 0 2px var(--accent);
+  transform:translateX(calc(-50% + 1px));
 }
-.hero-grid-bg {
-  position: absolute; inset: 0; opacity: 0.04;
-  background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
-  background-size: 35px 35px;
+.tl-period{font-family:var(--mono);font-size:0.72rem;color:var(--ink4);letter-spacing:0.04em;margin-bottom:0.35rem}
+.tl-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin-bottom:0.2rem;line-height:1.25}
+.tl-org{font-size:0.82rem;color:var(--accent);font-weight:600;margin-bottom:0.6rem}
+.tl-desc{font-size:0.88rem;color:var(--ink2);line-height:1.7}
+.tl-tag{display:inline-block;font-size:0.72rem;padding:0.25rem 0.65rem;border-radius:4px;background:var(--bg2);color:var(--ink3);margin:0.1rem;font-weight:500}
+
+/* ─── SKILLS ─── */
+.skill-group{margin-bottom:1.8rem}
+.skill-group-title{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.8rem}
+.skill-chips{display:flex;flex-wrap:wrap;gap:0.5rem}
+.skill-chip{
+  font-size:0.8rem;font-weight:500;
+  padding:0.4rem 0.9rem;border-radius:6px;
+  background:var(--card);border:1px solid var(--border);color:var(--ink2);
+  transition:all .15s;
 }
-.hero-photo-wrap {
+.skill-chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(192,94,46,.05)}
+
+/* ─── PROJECTS ─── */
+.project-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);transition:all .22s;
+}
+.project-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.project-thumb{
+  height:160px;background:linear-gradient(135deg,var(--ink),var(--ink2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;position:relative;overflow:hidden;
+}
+.project-thumb::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px}
+.project-body{padding:1.4rem}
+.project-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem}
+.project-tag{font-size:0.7rem;font-weight:600;padding:0.2rem 0.6rem;border-radius:4px;letter-spacing:0.05em;text-transform:uppercase}
+.project-tag-struct{background:var(--blue2);color:var(--blue)}
+.project-tag-hydro{background:var(--green2);color:var(--green)}
+.project-tag-env{background:#e8f4e8;color:#2a7a2a}
+.project-tag-trans{background:var(--gold2);color:var(--gold)}
+.project-tag-other{background:var(--bg2);color:var(--ink3)}
+.project-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:0.4rem;line-height:1.3}
+.project-desc{font-size:0.83rem;color:var(--ink3);line-height:1.65;margin-bottom:1rem}
+.project-footer{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap}
+.project-period{font-family:var(--mono);font-size:0.7rem;color:var(--ink4)}
+.project-links{display:flex;gap:0.5rem}
+.plink{
+  font-size:0.75rem;font-weight:600;padding:0.3rem 0.75rem;border-radius:5px;
+  text-decoration:none;transition:all .15s;
+}
+.plink-primary{background:var(--ink);color:#fff}.plink-primary:hover{background:#000}
+.plink-outline{background:transparent;border:1px solid var(--border);color:var(--ink2)}.plink-outline:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ─── ADD PROJECT MODAL ─── */
+.fab{
+  position:fixed;bottom:2rem;right:2rem;z-index:150;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--accent);color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(192,94,46,.4);transition:all .2s;font-size:1.4rem;
+}
+.fab:hover{transform:scale(1.1);background:#a84e22}
+.fab-label{
+  position:fixed;bottom:2.25rem;right:5.5rem;z-index:150;
+  background:var(--ink);color:#fff;font-size:0.78rem;font-weight:500;
+  padding:0.4rem 0.9rem;border-radius:8px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+  box-shadow:var(--shadow);
+}
+.fab:hover~.fab-label{opacity:1}
+
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;
+  align-items:center;justify-content:center;backdrop-filter:blur(4px);
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--card);border-radius:16px;width:90%;max-width:560px;
+  max-height:88vh;overflow-y:auto;box-shadow:0 20px 80px rgba(0,0,0,.25);
+  animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-header{
+  padding:1.5rem 1.8rem 1.2rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.modal-title{font-family:var(--serif);font-size:1.4rem;font-weight:600}
+.modal-close{
+  width:34px;height:34px;border-radius:8px;border:none;
+  background:var(--bg2);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--ink3);font-size:1.1rem;transition:.15s;
+}
+.modal-close:hover{background:var(--border);color:var(--ink)}
+.modal-body{padding:1.5rem 1.8rem}
+.form-row{margin-bottom:1.1rem}
+.form-row label{display:block;font-size:0.78rem;font-weight:600;color:var(--ink2);margin-bottom:0.4rem;letter-spacing:.03em}
+.form-row input,.form-row textarea,.form-row select{
+  width:100%;padding:0.6rem 0.85rem;border:1.5px solid var(--border);border-radius:7px;
+  font-family:var(--sans);font-size:0.88rem;color:var(--ink);background:var(--bg);
+  transition:border .15s;outline:none;
+}
+.form-row textarea{min-height:90px;resize:vertical}
+.form-row input:focus,.form-row textarea:focus,.form-row select:focus{border-color:var(--accent)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.modal-footer{padding:1.2rem 1.8rem;border-top:1px solid var(--border);display:flex;gap:0.75rem;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;border-radius:7px;font-size:.875rem;font-weight:500;cursor:pointer;border:none;font-family:var(--sans);transition:all .18s;text-decoration:none}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:#a84e22;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--ink3);border:1.5px solid var(--border)}.btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ─── ACHIEVEMENTS ─── */
+.ach-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow);display:flex;gap:1.1rem;align-items:flex-start;transition:all .2s}
+.ach-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.ach-icon{font-size:2rem;flex-shrink:0}
+.ach-content{}
+.ach-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin-bottom:0.2rem;line-height:1.25}
+.ach-org{font-size:0.78rem;font-weight:600;color:var(--accent);margin-bottom:0.4rem}
+.ach-desc{font-size:0.82rem;color:var(--ink3);line-height:1.6}
+.ach-date{font-family:var(--mono);font-size:0.7rem;color:var(--ink4);margin-top:0.4rem}
+.ach-link{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.75rem;font-weight:600;color:var(--green);text-decoration:none;margin-top:0.5rem}
+.ach-link:hover{color:#1e5039}
+
+/* ─── PUBLICATIONS ─── */
+.pub-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);transition:all .2s;border-left:4px solid var(--accent)}
+.pub-card:hover{box-shadow:var(--shadow-lg)}
+.pub-type{font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.pub-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;line-height:1.35;margin-bottom:.4rem}
+.pub-meta{font-size:.8rem;color:var(--ink3);margin-bottom:.7rem}
+.pub-abstract{font-size:.84rem;color:var(--ink2);line-height:1.7;margin-bottom:.8rem}
+.pub-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:600;color:var(--green);text-decoration:none}
+.pub-link:hover{color:#1e5039;text-decoration:underline}
+
+/* ─── MORE (ACTIVITIES, CERTS) ─── */
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow);transition:all .2s}
+.cert-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.cert-icon{font-size:1.8rem;margin-bottom:.7rem}
+.cert-title{font-family:var(--serif);font-size:1rem;font-weight:600;margin-bottom:.25rem;line-height:1.3}
+.cert-org{font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:.2rem}
+.cert-meta{font-size:.78rem;color:var(--ink3);margin-bottom:.2rem}
+.cert-date{font-family:var(--mono);font-size:.7rem;color:var(--ink4);margin-bottom:.6rem}
+.cert-verify{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:600;color:var(--green);text-decoration:none}
+.cert-verify:hover{text-decoration:underline}
+
+.act-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.25rem}
+.act-section-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.act-item-title{font-family:var(--serif);font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.act-item-meta{font-size:.78rem;color:var(--ink3);margin-bottom:.4rem}
+.act-item-desc{font-size:.82rem;color:var(--ink2);line-height:1.65}
+.placeholder-note{
+  font-size:.83rem;color:var(--ink4);font-style:italic;
+  padding:1.25rem;border:1.5px dashed var(--border);border-radius:8px;text-align:center;
+}
+
+/* ─── HOME PAGE ─── */
+.home-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.home-welcome{background:var(--ink);border-radius:16px;padding:2.5rem;color:#fff;position:relative;overflow:hidden}
+.home-welcome::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px}
+.home-welcome-title{font-family:var(--serif);font-size:2rem;font-weight:600;color:#fff;margin-bottom:.6rem;position:relative;z-index:1}
+.home-welcome-sub{font-size:.9rem;color:rgba(255,255,255,.55);position:relative;z-index:1;line-height:1.7}
+.home-quick{display:flex;flex-direction:column;gap:.75rem}
+.quick-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;box-shadow:var(--shadow)}
+.quick-stat-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent);line-height:1}
+.quick-stat-label{font-size:.72rem;color:var(--ink3);font-weight:500;letter-spacing:.04em}
+.home-nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.home-nav-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.4rem;text-align:center;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);
+}
+.home-nav-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--accent)}
+.hnc-icon{font-size:1.8rem;margin-bottom:.6rem}
+.hnc-title{font-size:.85rem;font-weight:600;color:var(--ink2)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;padding:4.5rem 1.5rem 2rem}
+  .mobile-toggle{display:flex}
+  .sidebar-overlay.open{display:block}
+  .profile-hero{grid-template-columns:1fr;gap:2rem}
+  .profile-right{min-height:340px}
+  .home-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .main{padding:4.5rem 1rem 2rem}
+  .card-grid,.card-grid-2{grid-template-columns:1fr}
+  .form-row-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE TOGGLE -->
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-profile">
+    <div class="profile-photo-ring">
+      <div class="profile-photo-initials">DD</div>
+    </div>
+    <div class="profile-name">Dipon Das</div>
+    <div class="profile-role">Civil Engineer · AUST</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <button class="nav-item active" onclick="goTo('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Profile
+    </button>
+    <button class="nav-item" onclick="goTo('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </button>
+
+    <div class="nav-section-label">Background</div>
+    <button class="nav-item" onclick="goTo('education')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Education
+    </button>
+    <button class="nav-item" onclick="goTo('work')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      Work Experience
+    </button>
+
+    <div class="nav-section-label">Portfolio</div>
+    <button class="nav-item" onclick="goTo('projects')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Projects
+    </button>
+    <button class="nav-item" onclick="goTo('achievements')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      Achievements
+    </button>
+    <button class="nav-item" onclick="goTo('publications')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Publications
+    </button>
+    <button class="nav-item" onclick="goTo('more')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      More
+    </button>
+  </div>
+
+  <div class="sidebar-social">
+    <a href="https://www.facebook.com/das.dipon.2.0" target="_blank" class="s-link" title="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/dipondas101/" target="_blank" class="s-link" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/dipon-das-5a215a364/" target="_blank" class="s-link" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="mailto:dipondas247@gmail.com" class="s-link" title="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main" id="main">
+
+  <!-- ═══ PROFILE PAGE ═══ -->
+  <section class="page active" id="page-profile">
+    <div class="profile-hero">
+      <div class="profile-left">
+        <div class="profile-eyebrow"><span class="pulse"></span>Civil Engineering Student</div>
+        <h1 class="profile-big-name">Dipon<br><em>Das</em></h1>
+        <div class="profile-big-role">// CE Student · AUST · Dhaka, Bangladesh</div>
+        <p class="profile-about">
+          A passionate Civil Engineering student at Ahsanullah University of Science & Technology (AUST), currently in my 3rd year. I specialise in structural analysis, hydraulics, and concrete design, with hands-on experience in construction site observations and academic research. I'm driven by the goal of building resilient, sustainable infrastructure for Bangladesh and beyond.
+        </p>
+        <div class="profile-contact-list">
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:dipondas247@gmail.com">dipondas247@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Dhaka, Bangladesh
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            B.Sc. in Civil Engineering, AUST · 3rd Year
+          </div>
+        </div>
+        <div class="profile-social-row">
+          <a href="https://www.facebook.com/das.dipon.2.0" target="_blank" class="ps-btn ps-btn-fb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/dipondas101/" target="_blank" class="ps-btn ps-btn-ig">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/dipon-das-5a215a364/" target="_blank" class="ps-btn ps-btn-li">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:dipondas247@gmail.com" class="ps-btn ps-btn-em">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+      <div class="profile-right">
+        <div class="pr-grid-bg"></div>
+        <div class="pr-photo-wrap">
+          <div class="pr-photo-ring">
+            <div class="pr-photo-initials">DD</div>
+          </div>
+        </div>
+        <div class="pr-name">Dipon Das</div>
+        <div class="pr-tag">Civil Engineering · AUST · Dhaka</div>
+        <div class="pr-stats">
+          <div class="pr-stat"><div class="pr-stat-num">3rd</div><div class="pr-stat-label">Year</div></div>
+          <div class="pr-stat"><div class="pr-stat-num">3+</div><div class="pr-stat-label">Projects</div></div>
+          <div class="pr-stat"><div class="pr-stat-num">1</div><div class="pr-stat-label">Publication</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOME PAGE ═══ -->
+  <section class="page" id="page-home">
+    <div class="page-header">
+      <div class="page-eyebrow">Dashboard</div>
+      <h1 class="page-title">Welcome Back 👋</h1>
+      <p class="page-subtitle">Here's a quick overview of your portfolio. Click any section to explore.</p>
+    </div>
+    <div class="home-grid">
+      <div class="home-welcome">
+        <div class="home-welcome-title">Dipon Das — Civil Engineer in the Making</div>
+        <div class="home-welcome-sub">Currently pursuing B.Sc. in Civil Engineering at AUST. Passionate about structural analysis, hydraulics, and sustainable infrastructure design. Based in Dhaka, Bangladesh, and always looking for opportunities to learn, build, and contribute.</div>
+      </div>
+      <div class="home-quick">
+        <div class="quick-stat"><div class="quick-stat-num">3rd Year</div><div class="quick-stat-label">Academic Level</div></div>
+        <div class="quick-stat"><div class="quick-stat-num">CGPA →</div><div class="quick-stat-label">Add your GPA</div></div>
+      </div>
+    </div>
+    <h3 style="font-family:var(--serif);font-size:1.1rem;margin-bottom:1rem;color:var(--ink3);font-weight:600;">Navigate to a Section</h3>
+    <div class="home-nav-grid">
+      <div class="home-nav-card" onclick="goTo('education')"><div class="hnc-icon">🎓</div><div class="hnc-title">Education</div></div>
+      <div class="home-nav-card" onclick="goTo('work')"><div class="hnc-icon">💼</div><div class="hnc-title">Work Experience</div></div>
+      <div class="home-nav-card" onclick="goTo('projects')"><div class="hnc-icon">🏗️</div><div class="hnc-title">Projects</div></div>
+      <div class="home-nav-card" onclick="goTo('achievements')"><div class="hnc-icon">🏆</div><div class="hnc-title">Achievements</div></div>
+      <div class="home-nav-card" onclick="goTo('publications')"><div class="hnc-icon">📄</div><div class="hnc-title">Publications</div></div>
+      <div class="home-nav-card" onclick="goTo('more')"><div class="hnc-icon">✨</div><div class="hnc-title">More</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION PAGE ═══ -->
+  <section class="page" id="page-education">
+    <div class="page-header">
+      <div class="page-eyebrow">Academic background</div>
+      <h1 class="page-title">Education</h1>
+      <p class="page-subtitle">Academic journey from school to university, with core skills and focus areas.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+      <div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-period">2021 — Present</div>
+            <div class="tl-title">B.Sc. in Civil Engineering</div>
+            <div class="tl-org">Ahsanullah University of Science & Technology (AUST)</div>
+            <div class="tl-desc">Currently in 3rd year (3.1 semester completed). Coursework spans structural analysis, reinforced concrete design, hydraulics & open channel flow, environmental engineering, and transportation engineering.</div>
+            <div style="margin-top:.75rem">
+              <span class="tl-tag">Structural Analysis</span>
+              <span class="tl-tag">Concrete Design</span>
+              <span class="tl-tag">Hydraulics</span>
+              <span class="tl-tag">Environmental Engg.</span>
+              <span class="tl-tag">Transportation Engg.</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 0 2px var(--gold)"></div>
+            <div class="tl-period">Completed</div>
+            <div class="tl-title">Higher Secondary Certificate (HSC)</div>
+            <div class="tl-org">Add your college name here</div>
+            <div class="tl-desc">Science group. Add your GPA and board here.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:var(--green);box-shadow:0 0 0 2px var(--green)"></div>
+            <div class="tl-period">Completed</div>
+            <div class="tl-title">Secondary School Certificate (SSC)</div>
+            <div class="tl-org">Add your school name here</div>
+            <div class="tl-desc">Science group. Add your GPA and board here.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:1.25rem">
+          <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:1rem">Core Competencies</h3>
+          <div class="skill-group">
+            <div class="skill-group-title">Structural Engineering</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Influence Lines</span>
+              <span class="skill-chip">SFD & BMD</span>
+              <span class="skill-chip">Moving Loads</span>
+              <span class="skill-chip">ACI Concrete Design</span>
+              <span class="skill-chip">Mix Design (ACI 211.1)</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Hydraulics & Hydrology</div>
+            <div class="skill-chips">
+              <span class="skill-chip">Open Channel Flow</span>
+              <span class="skill-chip">Flood Routing</span>
+              <span class="skill-chip">Muskingum Method</span>
+              <span class="skill-chip">Groundwater</span>
+              <span class="skill-chip">Aquifer Analysis</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Tools & Software</div>
+            <div class="skill-chips">
+              <span class="skill-chip">AutoCAD</span>
+              <span class="skill-chip">Python</span>
+              <span class="skill-chip">MS Office</span>
+              <span class="skill-chip">Canva</span>
+              <span class="skill-chip">Google AI Studio</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.75rem">Current Semester (3.2)</h3>
+          <div class="tl-desc" style="font-size:.86rem;color:var(--ink2);line-height:1.75">
+            Preparing for courses including advanced structural analysis, concrete design (CE 3211), open channel flow, environmental engineering, and transportation engineering.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WORK EXPERIENCE PAGE ═══ -->
+  <section class="page" id="page-work">
+    <div class="page-header">
+      <div class="page-eyebrow">Professional experience</div>
+      <h1 class="page-title">Work Experience</h1>
+      <p class="page-subtitle">Internships, site work, part-time roles, and practical field experience.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Add duration (e.g. June 2024 – Aug 2024)</div>
+        <div class="tl-title">Site Observation — Shallow Foundation Construction</div>
+        <div class="tl-org">Construction Site · CE 2200 Term Project · AUST</div>
+        <div class="tl-desc">Conducted real-world site observations and data collection for the CE 2200 Details of Construction course. Documented the construction process of single footing, combined footing, and mat foundation. Produced a detailed group term paper on findings.</div>
+        <div style="margin-top:.75rem">
+          <span class="tl-tag">Foundation Engineering</span>
+          <span class="tl-tag">Site Visit</span>
+          <span class="tl-tag">Data Collection</span>
+          <span class="tl-tag">Group-1</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--ink4);box-shadow:0 0 0 2px var(--ink4)"></div>
+        <div class="tl-period">Add your next experience</div>
+        <div class="tl-title">Add Internship / Work Role</div>
+        <div class="tl-org">Organisation · Location</div>
+        <div class="tl-desc" style="color:var(--ink4);font-style:italic">Describe your responsibilities, what you learned, and outcomes. Edit this section to add your actual work experience.</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem" class="placeholder-note">
+      💡 Add internships, part-time jobs, site visits, or volunteer engineering work by editing the HTML. Each experience follows the same timeline card format above.
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS PAGE ═══ -->
+  <section class="page" id="page-projects">
+    <div class="page-header">
+      <div class="page-eyebrow">Engineering portfolio</div>
+      <h1 class="page-title">Projects</h1>
+      <p class="page-subtitle">Academic projects, design assignments, and independent engineering work.</p>
+    </div>
+    <div class="card-grid" id="projects-grid">
+      <!-- Projects rendered by JS -->
+    </div>
+    <div style="margin-top:2rem" class="placeholder-note" id="no-projects-note" style="display:none">
+      No projects yet. Click the <strong>+</strong> button to add your first project!
+    </div>
+  </section>
+
+  <!-- ═══ ACHIEVEMENTS PAGE ═══ -->
+  <section class="page" id="page-achievements">
+    <div class="page-header">
+      <div class="page-eyebrow">Honours & recognition</div>
+      <h1 class="page-title">Achievements</h1>
+      <p class="page-subtitle">Competitions, certifications, academic honours, and notable accomplishments.</p>
+    </div>
+    <div class="card-grid">
+      <div class="ach-card">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-content">
+          <div class="ach-title">13th Position — English Quiz (Quiz Hunt 5.0)</div>
+          <div class="ach-org">Let's Know The World</div>
+          <div class="ach-desc">Participated in QuizHunt 5.0 and secured 13th position in the English Quiz, demonstrating strong communication and analytical skills under competitive conditions.</div>
+          <div class="ach-date">March 2026</div>
+          <a href="https://drive.google.com/file/d/162dAfZ6jHwlUI3ikEYfs0HENQTYqt0Br/view?usp=sharing" target="_blank" class="ach-link">📜 View Certificate ↗</a>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🐍</div>
+        <div class="ach-content">
+          <div class="ach-title">Master Python Programming: Complete Beginner to Advanced</div>
+          <div class="ach-org">Udemy</div>
+          <div class="ach-desc">Completed 24.5-hour comprehensive Python programming course covering fundamentals to advanced topics. Instructor: Srinivas Rao.</div>
+          <div class="ach-date">June 3, 2025 · 24.5 hours</div>
+          <a href="https://ude.my/UC-bcf880f0-d800-45cd-9e0a-42935451f63f" target="_blank" class="ach-link">✅ Verify Certificate ↗</a>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">✨</div>
+        <div class="ach-content">
+          <div class="ach-title">Add Achievement</div>
+          <div class="ach-org">Organisation / Platform</div>
+          <div class="ach-desc" style="color:var(--ink4);font-style:italic">Describe the achievement, competition, award, or honour here. Edit the HTML to add your actual accomplishments.</div>
+          <div class="ach-date">Month Year</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PUBLICATIONS PAGE ═══ -->
+  <section class="page" id="page-publications">
+    <div class="page-header">
+      <div class="page-eyebrow">Research & writing</div>
+      <h1 class="page-title">Publications</h1>
+      <p class="page-subtitle">Term papers, research reports, presentations, and academic submissions.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.25rem">
+      <div class="pub-card">
+        <div class="pub-type">Term Paper</div>
+        <div class="pub-title">Hands-on Learning: Shallow Foundation Construction Techniques</div>
+        <div class="pub-meta">CE 2200: Details of Constructions · AUST · Group-1 · 2024</div>
+        <div class="pub-abstract">Conducted as part of CE 2200, this term paper documents the construction process of shallow foundations — single footing, combined footing, and mat foundation — through real-world site observations and data collection. Covers construction methodology, material specifications, and quality control observations.</div>
+        <a href="https://drive.google.com/file/d/1SPZ41v4gaKzjS1jSsBx9YBqboRswv1q3/view?usp=sharing" target="_blank" class="pub-link">📄 View Full Paper ↗</a>
+      </div>
+      <div class="pub-card" style="border-left-color:var(--green)">
+        <div class="pub-type" style="color:var(--green)">Presentation Slides</div>
+        <div class="pub-title">Shallow Foundation Construction Techniques — Presentation</div>
+        <div class="pub-meta">CE 2200: Details of Constructions · AUST · Group-1 · 2024</div>
+        <div class="pub-abstract">PowerPoint presentation accompanying the CE 2200 term paper. Covers visual documentation of footing types, construction steps, and key engineering observations from site visits.</div>
+        <a href="https://drive.google.com/file/d/1OszxISQbm51Kt0OB_QrYsQYnL1Cije4E/view?usp=sharing" target="_blank" class="pub-link" style="color:var(--green)">▶ View Slides ↗</a>
+      </div>
+      <div class="pub-card" style="border-left-color:var(--ink4);opacity:.7">
+        <div class="pub-type" style="color:var(--ink4)">Upcoming</div>
+        <div class="pub-title">Add Future Publication / Research Paper</div>
+        <div class="pub-meta">Course / Journal · Institution · Year</div>
+        <div class="pub-abstract" style="color:var(--ink4);font-style:italic">Add upcoming papers, conference submissions, journal articles, or any academic writing here. Edit the HTML to include your actual publications.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MORE PAGE ═══ -->
+  <section class="page" id="page-more">
+    <div class="page-header">
+      <div class="page-eyebrow">Extracurriculars & Credentials</div>
+      <h1 class="page-title">More</h1>
+      <p class="page-subtitle">Certifications, club activities, seminars, and extra-curricular involvement.</p>
+    </div>
+
+    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:600;margin-bottom:1rem">Certifications & Courses</h3>
+    <div class="card-grid" style="margin-bottom:2.5rem">
+      <div class="cert-card">
+        <div class="cert-icon">🐍</div>
+        <div class="cert-title">Master Python Programming: Complete Beginner to Advanced</div>
+        <div class="cert-org" style="color:#a435f0">Udemy</div>
+        <div class="cert-meta">Instructor: Srinivas Rao</div>
+        <div class="cert-date">June 3, 2025 · 24.5 hrs</div>
+        <a href="https://ude.my/UC-bcf880f0-d800-45cd-9e0a-42935451f63f" target="_blank" class="cert-verify">✅ Verify ↗</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🎨</div>
+        <div class="cert-title">Canva Design</div>
+        <div class="cert-org">Canva</div>
+        <div class="cert-meta" style="color:var(--ink4);font-style:italic">Add certificate details — course name, date, hours</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div class="cert-title">PowerPoint & Presentation Design</div>
+        <div class="cert-org">Microsoft / Canva</div>
+        <div class="cert-meta">Shallow Foundation Construction Techniques · CE 2200 · AUST</div>
+        <div class="cert-date" style="margin-bottom:.6rem">Group-1 Presentation</div>
+        <a href="https://drive.google.com/file/d/1OszxISQbm51Kt0OB_QrYsQYnL1Cije4E/view?usp=sharing" target="_blank" class="cert-verify" style="color:var(--accent)">▶ View Slides ↗</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">➕</div>
+        <div class="cert-title">Add Another Certificate</div>
+        <div class="cert-org" style="color:var(--ink4);font-style:italic">Platform / Institution</div>
+        <div class="cert-meta" style="color:var(--ink4);font-style:italic">Edit HTML to add your certificate details</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:600;margin-bottom:1rem">Activities & Involvement</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+      <div>
+        <div class="act-section">
+          <div class="act-section-title">🎭 Extra-Curricular (ECA)</div>
+          <div class="placeholder-note">Add ECA activities — sports, cultural events, debate competitions, etc.</div>
+        </div>
+        <div class="act-section">
+          <div class="act-section-title">🏛️ Club Activities</div>
+          <div class="placeholder-note">Add clubs you're a member of — AUST Civil Engineering Club, etc. — with your role and duration.</div>
+        </div>
+      </div>
+      <div>
+        <div class="act-section">
+          <div class="act-section-title">📢 Seminars & Workshops</div>
+          <div class="placeholder-note">Add seminars, workshops, and webinars you've attended or presented at — topic, organiser, year.</div>
+        </div>
+        <div class="act-section">
+          <div class="act-section-title">🌐 Volunteer Work</div>
+          <div class="placeholder-note">Add any volunteer activities, community service, or social initiatives you've been a part of.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FAB (Add Project) -->
+<button class="fab" id="fab" onclick="openModal()" title="Add Project" style="display:none">＋</button>
+<div class="fab-label">Add Project</div>
+
+<!-- ADD PROJECT MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add New Project</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label>Project Title *</label>
+        <input type="text" id="p-title" placeholder="e.g. Reinforced Concrete Beam Design">
+      </div>
+      <div class="form-row">
+        <label>Description *</label>
+        <textarea id="p-desc" placeholder="Briefly describe the project, objectives, methods used, and outcomes..."></textarea>
+      </div>
+      <div class="form-row-2">
+        <div class="form-row" style="margin-bottom:0">
+          <label>Category</label>
+          <select id="p-cat">
+            <option value="struct">Structural Engineering</option>
+            <option value="hydro">Hydraulics / Hydrology</option>
+            <option value="env">Environmental Engineering</option>
+            <option value="trans">Transportation Engineering</option>
+            <option value="other">Other / General</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label>Period / Year</label>
+          <input type="text" id="p-period" placeholder="e.g. 2024 or Jan–May 2025">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Emoji / Icon (optional)</label>
+        <input type="text" id="p-emoji" placeholder="e.g. 🏗️ or 🌊 or 🏛️" maxlength="4">
+      </div>
+      <div class="form-row-2">
+        <div class="form-row" style="margin-bottom:0">
+          <label>Report / PDF Link (optional)</label>
+          <input type="url" id="p-link1" placeholder="https://drive.google.com/...">
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label>Slides / Extra Link (optional)</label>
+          <input type="url" id="p-link2" placeholder="https://...">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="addProject()">Add Project</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Page navigation ───
+const pages=['profile','home','education','work','projects','achievements','publications','more'];
+function goTo(id){
+  pages.forEach(p=>{
+    document.getElementById('page-'+p)?.classList.remove('active');
+    document.querySelectorAll('.nav-item').forEach(n=>{
+      if(n.getAttribute('onclick')==="goTo('"+p+"')") n.classList.remove('active');
+    });
+  });
+  document.getElementById('page-'+id)?.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')==="goTo('"+id+"')") n.classList.add('active');
+  });
+  document.getElementById('fab').style.display = id==='projects'?'flex':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeSidebar();
+}
+
+// ─── Sidebar (mobile) ───
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// ─── Projects data ───
+let projects=[
+  {
+    title:'ACI 211.1 Concrete Mix Design',
+    desc:'Full concrete mix design for a temple/mandir construction project, targeting f\'c = 3000 psi. Includes water-cement ratio calculations, aggregate proportioning, and admixture assessment per ACI 211.1 guidelines.',
+    cat:'struct',period:'2024',emoji:'🏛️',
+    link1:'',link2:''
+  },
+  {
+    title:'Muskingum Method — Flood Routing',
+    desc:'Applied the Muskingum routing method to route a flood hydrograph through a river reach. Determined storage constants K and X, computed outflow hydrograph, and analysed attenuation and lag effects.',
+    cat:'hydro',period:'2024',emoji:'🌊',
+    link1:'',link2:''
+  },
+  {
+    title:'Shallow Foundation Construction — Site Study',
+    desc:'Documented and analysed real-world shallow foundation construction including single footing, combined footing, and mat foundation through site observations. Part of CE 2200 term assignment.',
+    cat:'struct',period:'2024',emoji:'🏗️',
+    link1:'https://drive.google.com/file/d/1SPZ41v4gaKzjS1jSsBx9YBqboRswv1q3/view?usp=sharing',
+    link2:'https://drive.google.com/file/d/1OszxISQbm51Kt0OB_QrYsQYnL1Cije4E/view?usp=sharing'
+  }
+];
+
+const catMap={struct:{label:'Structural',cls:'project-tag-struct'},hydro:{label:'Hydraulics',cls:'project-tag-hydro'},env:{label:'Environmental',cls:'project-tag-env'},trans:{label:'Transportation',cls:'project-tag-trans'},other:{label:'General',cls:'project-tag-other'}};
+
+function renderProjects(){
+  const grid=document.getElementById('projects-grid');
+  const note=document.getElementById('no-projects-note');
+  if(!projects.length){grid.innerHTML='';note.style.display='block';return;}
+  note.style.display='none';
+  grid.innerHTML=projects.map((p,i)=>{
+    const c=catMap[p.cat]||catMap.other;
+    const lnks=[];
+    if(p.link1) lnks.push(`<a href="${p.link1}" target="_blank" class="plink plink-primary">📄 Report ↗</a>`);
+    if(p.link2) lnks.push(`<a href="${p.link2}" target="_blank" class="plink plink-outline">▶ Slides ↗</a>`);
+    return`<div class="project-card">
+      <div class="project-thumb">${p.emoji||'🔧'}</div>
+      <div class="project-body">
+        <div class="project-tags"><span class="project-tag ${c.cls}">${c.label}</span></div>
+        <div class="project-title">${p.title}</div>
+        <div class="project-desc">${p.desc}</div>
+        <div class="project-footer">
+          <span class="project-period">${p.period||''}</span>
+          <div class="project-links">${lnks.join('')}<button onclick="deleteProject(${i})" style="font-size:.7rem;padding:.3rem .6rem;border-radius:5px;background:transparent;border:1px solid #eee;color:var(--ink4);cursor:pointer;font-family:var(--sans)" title="Delete">🗑</button></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteProject(i){
+  if(confirm('Remove this project?')){projects.splice(i,1);renderProjects();}
+}
+
+function addProject(){
+  const title=document.getElementById('p-title').value.trim();
+  const desc=document.getElementById('p-desc').value.trim();
+  if(!title||!desc){alert('Please fill in the title and description.');return;}
+  projects.push({
+    title,desc,
+    cat:document.getElementById('p-cat').value,
+    period:document.getElementById('p-period').value.trim(),
+    emoji:document.getElementById('p-emoji').value.trim()||'🔧',
+    link1:document.getElementById('p-link1').value.trim(),
+    link2:document.getElementById('p-link2').value.trim(),
+  });
+  renderProjects();
+  closeModal();
+  ['p-title','p-desc','p-period','p-emoji','p-link1','p-link2'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('p-cat').selectedIndex=0;
+}
+
+// ─── Modal ───
+function openModal(){document.getElementById('modal-overlay').classList.add('open')}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+
+// ─── Init ───
+renderProjects();
+</script>
+</body>
+</html>.hero-photo-wrap {
   position: relative; z-index: 1; margin-bottom: 2.5rem;
 }
 .hero-photo-ring {
