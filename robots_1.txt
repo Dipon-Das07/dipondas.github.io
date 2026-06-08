@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# LinkedIn crawler
+User-agent: LinkedInBot
+Allow: /
+
+Sitemap: https://dipondas.github.io/portfolio/sitemap.xml
