@@ -5,4 +5,4 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-Sitemap: https://dipondas.github.io/portfolio/sitemap.xml
+Sitemap: https://dipon-das07.github.io/dipondas.github.io/sitemap.xml
